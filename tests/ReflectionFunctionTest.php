@@ -30,7 +30,7 @@ class ReflectionFunctionTest extends TestCase
         $allNameGetters = [
             'getStartLine', 'getEndLine', 'getDocComment', 'getExtension', 'getExtensionName',
             'getName', 'getNamespaceName', 'getShortName', 'inNamespace', 'getStaticVariables',
-            'getNumberOfParameters', 'getNumberOfRequiredParameters', '__toString', 'isDisabled',
+            'getNumberOfParameters', 'getNumberOfRequiredParameters', '__toString',
             'returnsReference', 'getClosureScopeClass', 'getClosureThis'
         ];
 

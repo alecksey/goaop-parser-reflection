@@ -52,7 +52,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function getClosureScopeClass()
+    public function getClosureScopeClass(): ?\ReflectionClass
     {
         $this->initializeInternalReflection();
 
@@ -62,14 +62,14 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function getClosureThis()
+    public function getClosureThis(): ?object
     {
         $this->initializeInternalReflection();
 
         return parent::getClosureThis();
     }
 
-    public function getDocComment()
+    public function getDocComment(): bool|string
     {
         $docComment = $this->functionLikeNode->getDocComment();
 
@@ -86,7 +86,7 @@ trait ReflectionFunctionLikeTrait
         return null;
     }
 
-    public function getExtensionName()
+    public function getExtensionName(): bool
     {
         return false;
     }
@@ -113,7 +113,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function getNamespaceName()
+    public function getNamespaceName(): string
     {
         return $this->namespaceName;
     }
@@ -125,7 +125,7 @@ trait ReflectionFunctionLikeTrait
      *
      * @return int
      */
-    public function getNumberOfParameters()
+    public function getNumberOfParameters(): int
     {
         return count($this->functionLikeNode->getParams());
     }
@@ -137,7 +137,7 @@ trait ReflectionFunctionLikeTrait
      *
      * @return int
      */
-    public function getNumberOfRequiredParameters()
+    public function getNumberOfRequiredParameters(): int
     {
         $requiredParameters = 0;
         foreach ($this->getParameters() as $parameter) {
@@ -152,7 +152,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function getParameters()
+    public function getParameters(): array
     {
         if (!isset($this->parameters)) {
             $parameters = [];
@@ -182,7 +182,7 @@ trait ReflectionFunctionLikeTrait
      *
      * @link http://php.net/manual/en/reflectionfunctionabstract.getreturntype.php
      */
-    public function getReturnType()
+    public function getReturnType(): \ReflectionType|ReflectionNamedType|null
     {
         $isBuiltin  = false;
         $returnType = $this->functionLikeNode->getReturnType();
@@ -225,7 +225,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function getStaticVariables()
+    public function getStaticVariables(): array
     {
         $nodeTraverser      = new NodeTraverser();
         $variablesCollector = new StaticVariablesCollector($this);
@@ -244,7 +244,7 @@ trait ReflectionFunctionLikeTrait
      *
      * @link http://php.net/manual/en/reflectionfunctionabstract.hasreturntype.php
      */
-    public function hasReturnType()
+    public function hasReturnType(): bool
     {
         $returnType = $this->functionLikeNode->getReturnType();
 
@@ -254,7 +254,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function inNamespace()
+    public function inNamespace(): bool
     {
         return !empty($this->namespaceName);
     }
@@ -262,7 +262,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function isClosure()
+    public function isClosure(): bool
     {
         return $this->functionLikeNode instanceof Closure;
     }
@@ -270,7 +270,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function isDeprecated()
+    public function isDeprecated(): bool
     {
         // user-land method/function/closure can not be deprecated
         return false;
@@ -279,7 +279,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function isGenerator()
+    public function isGenerator(): bool
     {
         $nodeTraverser = new NodeTraverser();
         $nodeDetector  = new GeneratorDetector();
@@ -294,7 +294,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function isInternal()
+    public function isInternal(): bool
     {
         // never can be an internal method
         return false;
@@ -303,7 +303,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function isUserDefined()
+    public function isUserDefined(): bool
     {
         // always defined by user, because we parse the source code
         return true;
@@ -312,7 +312,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function isVariadic()
+    public function isVariadic(): bool
     {
         foreach ($this->getParameters() as $parameter) {
             if ($parameter->isVariadic()) {
@@ -326,7 +326,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function returnsReference()
+    public function returnsReference(): bool
     {
         return $this->functionLikeNode->returnsByRef();
     }
