@@ -356,7 +356,7 @@ trait ReflectionClassLikeTrait
             }
         }
 
-        return false;
+        throw new \ReflectionException('Method ' . $name . ' not found in ' . $this->getName());
     }
 
     /**
