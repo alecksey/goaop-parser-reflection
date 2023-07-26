@@ -192,7 +192,7 @@ class ReflectionParameter extends BaseReflectionParameter
     /**
      * @inheritDoc
      */
-    public function getClass()
+    public function getClass(): \ReflectionClass|ReflectionClass|null
     {
         $parameterType = $this->parameterNode->type;
         if ($parameterType instanceof Name) {

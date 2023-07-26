@@ -17,7 +17,7 @@ class ReflectionParameterTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->setUpFile(__DIR__ . '/Stub/FileWithParameters55.php');
+        $this->setUpFile(__DIR__ . '/Stub/FileWithParameters70.php');
     }
 
     /**
@@ -74,14 +74,7 @@ class ReflectionParameterTest extends TestCase
      */
     public function fileProvider()
     {
-        $files = ['PHP5.5' => [__DIR__ . '/Stub/FileWithParameters55.php']];
-
-        if (PHP_VERSION_ID >= 50600) {
-            $files['PHP5.6'] = [__DIR__ . '/Stub/FileWithParameters56.php'];
-        }
-        if (PHP_VERSION_ID >= 70000) {
-            $files['PHP7.0'] = [__DIR__ . '/Stub/FileWithParameters70.php'];
-        }
+        $files['PHP7.0'] = [__DIR__ . '/Stub/FileWithParameters70.php'];
 
         return $files;
     }

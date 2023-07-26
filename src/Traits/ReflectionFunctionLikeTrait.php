@@ -69,29 +69,29 @@ trait ReflectionFunctionLikeTrait
         return parent::getClosureThis();
     }
 
-    public function getDocComment(): bool|string
+    public function getDocComment(): string|false
     {
         $docComment = $this->functionLikeNode->getDocComment();
 
         return $docComment ? $docComment->getText() : false;
     }
 
-    public function getEndLine()
+    public function getEndLine() : int|false
     {
         return $this->functionLikeNode->getAttribute('endLine');
     }
 
-    public function getExtension()
+    public function getExtension() : ?\ReflectionExtension
     {
         return null;
     }
 
-    public function getExtensionName(): bool
+    public function getExtensionName(): string|false
     {
         return false;
     }
 
-    public function getFileName()
+    public function getFileName() : string|false
     {
         return $this->functionLikeNode->getAttribute('fileName');
     }
@@ -99,7 +99,7 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public function getName() : string
     {
         if ($this->functionLikeNode instanceof Function_ || $this->functionLikeNode instanceof ClassMethod) {
             $functionName = $this->functionLikeNode->name->toString();
@@ -107,7 +107,7 @@ trait ReflectionFunctionLikeTrait
             return $this->namespaceName ? $this->namespaceName . '\\' . $functionName : $functionName;
         }
 
-        return false;
+        return '';
     }
 
     /**
@@ -208,16 +208,16 @@ trait ReflectionFunctionLikeTrait
     /**
      * {@inheritDoc}
      */
-    public function getShortName()
+    public function getShortName() : string
     {
         if ($this->functionLikeNode instanceof Function_ || $this->functionLikeNode instanceof ClassMethod) {
             return $this->functionLikeNode->name->toString();
         }
 
-        return false;
+        return '';
     }
 
-    public function getStartLine()
+    public function getStartLine() : int|false
     {
         return $this->functionLikeNode->getAttribute('startLine');
     }

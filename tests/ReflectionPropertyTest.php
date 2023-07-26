@@ -42,6 +42,9 @@ class ReflectionPropertyTest extends AbstractTestCase
         $parsedProperty = $parsedClass->getProperty($propertyName);
         $expectedValue  = $refProperty->$getterName();
         $actualValue    = $parsedProperty->$getterName();
+//        if($expectedValue != $actualValue || $getterName == '__toString') {
+//            var_dump($expectedValue, $actualValue);die();
+//        }
         $this->assertSame(
             $expectedValue,
             $actualValue,

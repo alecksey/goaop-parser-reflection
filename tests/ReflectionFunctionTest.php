@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class ReflectionFunctionTest extends TestCase
 {
-    const STUB_FILE55 = '/Stub/FileWithFunctions55.php';
     const STUB_FILE70 = '/Stub/FileWithFunctions70.php';
 
     /**
@@ -17,7 +16,7 @@ class ReflectionFunctionTest extends TestCase
 
     protected function setUp(): void
     {
-        $fileName = stream_resolve_include_path(__DIR__ . self::STUB_FILE55);
+        $fileName = stream_resolve_include_path(__DIR__ . self::STUB_FILE70);
 
         $reflectionFile = new ReflectionFile($fileName);
         $this->parsedRefFile = $reflectionFile;
@@ -109,7 +108,7 @@ class ReflectionFunctionTest extends TestCase
             $this->markTestSkipped('Test available only for PHP7.0 and newer');
         }
 
-        $fileName = stream_resolve_include_path(__DIR__ . self::STUB_FILE70);
+        //$fileName = stream_resolve_include_path(__DIR__ . self::STUB_FILE70);
 
         $reflectionFile = new ReflectionFile($fileName);
         include $fileName;
